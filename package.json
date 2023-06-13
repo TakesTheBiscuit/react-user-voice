@@ -1,0 +1,41 @@
+{
+  "name": "react-user-voice",
+  "version": "0.1.0",
+  "description": "react-user-voice is a thin wrapper that includes the UserVoice tracker and widget javascript in your react sites. Currently supports a single trigger. Pull requests welcome on GitHub.",
+  "main": "dist/react-uv.js",
+  "module": "dist/esm/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run build:umd && npm run build:esm",
+    "build:esm": "cross-env BABEL_ENV=esm babel src --out-dir dist/esm",
+    "build:umd": "cross-env BABEL_ENV=umd webpack --mode=production"
+  },
+  "types": "./types/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/TakesTheBiscuit/react-user-voice.git"
+  },
+  "keywords": [
+    "uservoice"
+  ],
+  "author": "Paul Drage <pauldrage@e-swoosh.co.uk>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TakesTheBiscuit/react-user-voice/issues"
+  },
+  "homepage": "https://github.com/TakesTheBiscuit/react-user-voice#readme",
+  "devDependencies": {
+    "@babel/cli": "7.17.10",
+    "@babel/core": "7.18.5",
+    "@babel/eslint-parser": "7.18.2",
+    "@babel/plugin-proposal-class-properties": "7.17.12",
+    "@babel/preset-env": "7.18.2",
+    "@babel/preset-flow": "^7.17.12",
+    "@babel/preset-react": "^7.17.12",
+    "babel-loader": "8.2.5",
+    "cross-env": "^7.0.3",
+    "webpack": "4.46.0",
+    "webpack-cli": "3.3.9",
+    "webpack-dev-server": "3.8.2"
+  }
+}
