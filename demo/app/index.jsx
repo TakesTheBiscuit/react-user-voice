@@ -14,7 +14,7 @@ export default class App extends PureComponent {
 
     const uvOptions = {
       debug: true,
-      src: "https://nominet.uservoice.com/widget_environment/zLIKKOOpXIyhLFgX0I9TQ.js",
+      src: "https://YOUR_ORG.uservoice.com/widget_environment/YOUR_UNIQUE_ID.js",
       trigger: { mode: "satisfaction", trigger_position: "top-right" },
       colors: {
         accent_color: "#2B78C5",
