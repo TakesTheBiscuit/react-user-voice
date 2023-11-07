@@ -1,11 +1,11 @@
-let isLoaded = false;
-export default function (options) {
-  if (isLoaded) return;
-  isLoaded = true;
-  
+
+export default function (options, callback) {
+
   if (options && options.debug) {
     console.info('UserVoice initialize starting');
   }
+
+  const loadedUvEvent = new Event("loadedUV");
 
   const onerror = options && options.onerror;
 
@@ -21,40 +21,35 @@ export default function (options) {
     uv.type = 'text/javascript';
     uv.async = true;
     uv.src = options.src;
+    // user tracking (assumed)
     var s = document.getElementsByTagName('script')[0];
     s.parentNode.insertBefore(uv, s);
+
+    // Once the script finishes loading fire the event
+    uv.onload = function () {
+      if (options && options.debug) {
+        console.log('UV script has loaded, triggering event');
+      }
+      // Dispatch the event indicating that the UserVoice script has loaded
+      var loadedUvEvent = new Event('loadedUV');
+      document.dispatchEvent(loadedUvEvent);
+    };
+
+    // Setup a listener for later
+    document.addEventListener('loadedUV', function (e) {
+
+      if (options && options.debug) {
+        console.log('UV loaded and calling back true');
+        console.log(UserVoice);
+      }
+
+      callback(true); // Callback function when the script has finished loading
+
+    });
+
   })();
 
-  // Set colors
-  if (options.colors) {
-    if (options.colors) {
-        console.info('UV Colors ON', options.colors);
-    }
-    UserVoice.push([
-        'set',
-        options.colors,
-      ]);
-  }
-  
-  // Identify the user and pass traits
-  if (options.identify) {
-    if (options.debug) {
-        console.info('UV Identify ON', options.identify);
-    }
-    UserVoice.push([
-        'identify',
-        options.identify
-      ]);
-  }
-  
-  // Set the trigger
-  if (options.trigger) {
-    if (options.debug) {
-        console.info('UV trigger has been set', options.trigger);
-    }
-    // Add default trigger to the bottom-right corner of the window:
-    UserVoice.push(['addTrigger', options.trigger]);
-  }
- 
+
+
   /* eslint-enable */
 }
