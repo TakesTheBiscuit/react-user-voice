@@ -1,6 +1,6 @@
 {
   "name": "react-user-voice",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "description": "react-user-voice is a thin wrapper that includes the UserVoice tracker and widget javascript in your react sites. Currently supports a single trigger. Pull requests welcome on GitHub.",
   "main": "dist/react-uv.js",
   "module": "dist/esm/index.js",
